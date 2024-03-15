@@ -1,4 +1,5 @@
 import { useState } from "react"
+import '../App.css'
 export const Button = (props) => {
     const [click, setClick] = useState(false)
     const handleClick = () => {
@@ -16,6 +17,7 @@ export const Button = (props) => {
     return (
         <div>
             <button
+            class="floated"
             style={{backgroundColor: click ? 'green' : 'red'}}
             onClick={handleClick}>{props.value}
             </button>

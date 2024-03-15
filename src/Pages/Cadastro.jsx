@@ -29,22 +29,30 @@ export const Cadastro = () => {
         <form>
           <label>NOME:</label>
           <input type='text'></input>
-        </form>
-        <form>
           <label>CPF:</label>
           <input type='numbers'></input>
-        </form>
-        <form>
-          <label>Aposta</label>
-          <input type='numbers'></input>
-          <input type='submit' value='Cadastrar aposta' readOnly="readonly"/>
+          <p>SELECIONE 5 NÚMEROS PARA APOSTAR:</p>
+          <div>
+              <Numeros escolhas = {escolhas} func = {remove}/>
+          </div>
+          <p>
+          <input type='Submit' value='Cadatrar aposta' readOnly={true}></input>
+          </p>
         </form>
         
       </div>
-      {/* <Button value = {1} array = {escolhas} func = {remove}> </Button>
-      <Button value = {2} array = {escolhas} func = {remove}> </Button>
-      <Button value = {3} array = {escolhas} func = {remove}> </Button> */}
-      <Numeros escolhas = {escolhas} func = {remove}/>
+      <div>
+        <h1>
+          LISTA DE APOSTAS
+        </h1>
+        <section>
+          <article>
+            
+          </article>
+        </section>
+      </div>
+
+      
 
     </div>
   )

@@ -4,6 +4,7 @@ import {Cadastro} from "./Pages/Cadastro";
 import {Sorteio} from "./Pages/Sorteio";
 import {Premiacao} from "./Pages/Premiacao";
 
+
 const App = () =>{
   return(
     <Router>
