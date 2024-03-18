@@ -3,6 +3,7 @@ import {Inicio} from "./Pages/Inicio";
 import {Cadastro} from "./Pages/Cadastro";
 import {Sorteio} from "./Pages/Sorteio";
 import {Premiacao} from "./Pages/Premiacao";
+import './index.css'
 
 
 const App = () =>{
