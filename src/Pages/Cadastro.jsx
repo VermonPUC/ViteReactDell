@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
 import { Numeros} from "../Components/Numeros"
 import { Button } from "../Components/Button"
+import axios from 'axios'
 
 
 export const Cadastro = () => {
@@ -9,10 +10,25 @@ export const Cadastro = () => {
   const [counter, setCounter] = useState(0)
   console.log(escolhas)
 
+  
+
   const remove = (e) => {
     var x = escolhas.filter((item) => item != e)   
     mudaEscolhas(x)
   }
+
+  const getApostas = async () => {
+    const result = await axios.get("http://localhost:3000/apostas")
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    await axios.post("")
+  }
+
+  useEffect(() => {
+    getApostas()
+  }, [])
   
 
   setTimeout(
@@ -26,7 +42,7 @@ export const Cadastro = () => {
     <div>
         <h1>MEGA SENA DELL {counter}</h1>
       <div>
-        <form>
+        <form onSubmit={(e) => onsubmit}>
           <label>NOME:</label>
           <input type='text'></input>
           <label>CPF:</label>
