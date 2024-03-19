@@ -1,9 +1,7 @@
 import { useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
 import { Numeros} from "../Components/Numeros"
-import { Button } from "../Components/Button"
 import axios from 'axios'
-import { array } from 'prop-types'
 
 
 export const Cadastro = () => {
@@ -42,12 +40,14 @@ export const Cadastro = () => {
       console.log("ENVIOU")
     ).catch(() => {
       setError(true)
-    })
+    }).finally(
+      setError(false)
+    )
     setApostas(apostas => [...apostas, post])
 
   }
 
-  function getRandomInt(min, max) {
+  const getRandomInt = (min, max) => {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
@@ -72,11 +72,6 @@ export const Cadastro = () => {
   }
 
   useEffect(() => {
-
-  }, [escolhas])
-
-
-  useEffect(() => {
     setPost({
       ...post,
       name: name,
@@ -87,36 +82,40 @@ export const Cadastro = () => {
 
   useEffect(() => {
     getApostas()
-  },[])
+  },[apostas])
 
   
-  setTimeout(
-    () => {
-      setCounter(counter + 1)
-      //console.log(escolhas)
+  // setTimeout(
+  //   () => {
+  //     setCounter(counter + 1)
+  //     //console.log(escolhas)
 
-    },
-    1000
-  )
+  //   },
+  //   1000
+  // )
   
   
   return (
-    <div className='bg-grey-500'>
-      <h1 className="text-3xl font-bold text-blue-500">MEGA SENA DELL {counter}</h1>
-      <div>
+    <div className='bg-grey-500 flex flex-col items-left justify-left p-4'>
+      <h1 className="text-3xl font-bold text-blue-500">MEGA-SENA DELL</h1>
         <form onSubmit={(e) => onSubmit(e)}>
-          <label>NOME:</label>
-          <input className='p-2' type='text' placeholder="Nome do dono da aposta" onChange={(e) => {setName(e.target.value), console.log(e.target.value)}}></input>
+          <label>Nome:</label>
+          <input className='p-2' type='text' placeholder="Nome do dono da aposta" onChange={(e) => {setName(e.target.value)}}></input>
           <label>CPF:</label>
-          <input className='p-2' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => {setCPF(e.target.value) , console.log(e.target.value)}}></input>
-          <p>SELECIONE 5 NÚMEROS PARA APOSTAR:</p>
+          <input className='p-2' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => {setCPF(e.target.value)}}></input>
+          <p>Números selecionados para a aposta:</p>
+          <p className='text-bold text-green-900'>
+            {escolhas.map((x)=>(
+            <span>{x} </span>
+          ))}
+
+          </p>
           <div className='bg-grey-100'>
           <input className='p-2 bg-green-700 text-white rounded text-lg w-auto' type='Submit' value='Cadatrar aposta' readOnly = {true}></input>
-          <button className='bg-yellow-500 text-white p-2 ml-2 rounded text-lg w-auto' onClick={surpresinha}> Surpresinha</button>
-          {(error ? <span className='text-red bg-red-50'>Preencha corretamente os campos e tente novamente</span> : "")}
+          <button className='bg-yellow-500 text-white p-2 ml-2 rounded text-lg w-auto' onClick={surpresinha} readOnly = {true}> Surpresinha</button>
+          {(error ? <span className='text-red bg-red-50'>Preencha todos os campos para enviar a aposta.</span> : "")}
           </div>
         </form>
-      </div>
       <div className=''>
         <Numeros escolhas = {escolhas} func = {remove}/>
       </div>

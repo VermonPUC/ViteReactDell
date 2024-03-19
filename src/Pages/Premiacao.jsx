@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
+
 export const Premiacao = () => {
     return(
         <div>
-            <h1>premiacao</h1>
-            <button></button>
+            <h1>COMECE SUAS APOSTAS</h1>
+            <button>{<Link to="/">Inicio</Link>}</button>
         </div>
     )
 }

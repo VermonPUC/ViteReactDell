@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState } from "react"
 //import '../App.css'
 export const Button = (props) => {
@@ -14,6 +15,17 @@ export const Button = (props) => {
         setClick(!click)
         
     }
+    
+    useEffect(() => {
+        for(var i = 0; i < props.array.length; i++){
+            if(props.array[i] === props.value){
+                setClick(true)
+                break
+            }
+            setClick(false)
+        }
+    },[props.array])
+    
     return (
         <div>
             <button
