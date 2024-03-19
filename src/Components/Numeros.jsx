@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "./Button"
 export const Numeros = (props) => {
     const arr = []
