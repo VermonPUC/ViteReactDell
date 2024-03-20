@@ -8,7 +8,7 @@ export const Button = (props) => {
             return
         }
         if(!click){
-            props.array.push(props.value)
+            props.func2(props.value)
         }else{
             props.func(props.value)
         }

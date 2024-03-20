@@ -26,6 +26,12 @@ export const Cadastro = () => {
       return updatedEscolhas;
     });
   }
+
+  const adiciona = (e) => {
+    mudaEscolhas(escolhas.concat(e));
+  }
+
+
   const getApostas = async () => {
     const result = await axios.get("http://localhost:3000/apostas")
     setApostas(result.data)
@@ -47,7 +53,7 @@ export const Cadastro = () => {
     }).finally(
       setError(false)
     )
-    setApostas(apostas => [...apostas, post])
+    setApostas(apostas.concat(post))
 
   }
 
@@ -59,6 +65,8 @@ export const Cadastro = () => {
 
   const deleta = async (e) => {
     await axios.delete("http://localhost:3000/deleta/", {params: {id: e}}).then((resp) => console.log(resp.data))
+    const todasApostas = apostas.filter((aposta) => aposta.id !== id)
+    setApostas(todasApostas)
     console.log(e)
   }
 
@@ -130,7 +138,7 @@ export const Cadastro = () => {
           </form>
         </div>
         <div className=''>
-          <Numeros escolhas={escolhas} func={remove} />
+          <Numeros escolhas={escolhas} func={remove} func2={adiciona}/>
         </div>
         <div>
           <button className='bg-red-500 text-white p-2 rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-red-600'>{<Link to="/Sorteio">Finalizar cadastros e iniciar sorteio</Link>}</button>
