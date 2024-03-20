@@ -29,7 +29,7 @@ export const Button = (props) => {
     return (
         <div>
             <button
-            className="text-black hover:text-black border border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-grey-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+            className="text-black border border-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 hover:bg-green-800 hover:text-black"
             key={props.value}
             style={{backgroundColor: click ? 'green' : 'white'}}
             onClick={handleClick}>{props.value}

@@ -6,19 +6,22 @@ export const Sorteio = () => {
     const [sorteio, setSorteio] = useState({})
     const [counter, setCounter] = useState(0)
     const [apostas, setApostas] = useState([])
+    const [numeros_ord, setNumOrd] = useState([])
 
     const getSorteio = async () => {
         await axios.get("http://localhost:3000/sorteio").then((resp) => {
             setSorteio(resp.data)
             setApostas(resp.data.apostas_vencedoras)
+            setNumOrd(arrayToObjectList(resp.data.numeros_apostados))
             console.log(resp.data)
+            console.log(arrayToObjectList(resp.data.numeros_apostados))
         })
     }
 
-    const getApostas = async () => {
-        const result = await axios.get("http://localhost:3000/apostas").then((resp) => {
-            setApostas(result.data)
-        })
+    const arrayToObjectList = (array) => {
+        const objectsArray = array.map((value, index) => ({ indice: index + 1, valor: value }));
+        objectsArray.sort((a, b) => b.valor - a.valor);
+        return objectsArray;
     }
 
     setTimeout(
@@ -37,7 +40,7 @@ export const Sorteio = () => {
     return (
 
         <div className="flex flex-col items-center p-8 " >
-            <h1 className="text-5xl font-bold text-blue-500">SORTEIO MEGA-SENA DELL</h1>
+            <h1 className="text-5xl font-bold text-blue-600">SORTEIO MEGA-SENA DELL</h1>
             <h1 className="text-5xl font-bold text-black">Números Sorteados:</h1>
             <h1 className="text-5xl font-bold text-black">{!("rodada" in sorteio) ? "Carregando..." : (
                 <div className={"" + (sorteio.venceu ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50')}>
@@ -89,18 +92,18 @@ export const Sorteio = () => {
             </div>
             <div className="max-h-60 overflow-y-scroll ">
                 <table className="table-fixed">
-                    <thead>
+                    <thead className="sticky top-0">
                         <tr className="bg-gray-200">
                             <th className="px-4 py-2">Número</th>
                             <th className="px-4 py-2">Quantidade de apostas</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {sorteio.numeros_apostados ? (
-                            sorteio.numeros_apostados.map((elem, i) => (
-                                <tr key={i} className="border-b">
-                                    <td className="px-4 py-2">{i + 1}</td>
-                                    <td className="px-4 py-2 text-right">{elem}</td>
+                        {numeros_ord ? (
+                            numeros_ord.map((elem) => (
+                                <tr key={elem.indice} className="border-b">
+                                    <td className="px-4 py-2">{elem.indice}</td>
+                                    <td className="px-4 py-2 text-right">{elem.valor}</td>
                                 </tr>
                             ))
                         ) : (
@@ -116,7 +119,7 @@ export const Sorteio = () => {
 
 
             <div>
-                <button className="bg-yellow-500 text-white p-2 ml-2 rounded text-lg w-auto" >{<Link to="/Premiacao">Premiação</Link>}</button>
+                <button className="bg-yellow-500 text-white p-2 ml-2 rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-yellow-600" >{<Link to="/Premiacao" state={apostas}>Premiação</Link>}</button>
             </div>
 
 
