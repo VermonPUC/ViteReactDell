@@ -64,10 +64,13 @@ export const Cadastro = () => {
   }
 
   const deleta = async (e) => {
-    await axios.delete("http://localhost:3000/deleta/", {params: {id: e}}).then((resp) => console.log(resp.data))
-    const todasApostas = apostas.filter((aposta) => aposta.id !== id)
-    setApostas(todasApostas)
-    console.log(e)
+    
+    await axios.delete("http://localhost:3000/deleta/", {params: {id: e}}).then((resp) => console.log(resp.data)).finally(() =>{
+      const todasApostas = apostas.filter((aposta) => aposta.id !== e)
+      setApostas(todasApostas)
+      console.log(e)
+    })
+
   }
 
 
