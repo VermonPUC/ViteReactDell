@@ -36,7 +36,7 @@ export const Sorteio = () => {
 
     return(
 
-        <div className="flex flex-col items-left justify-left p-4 " >
+        <div className="flex flex-col items-center justify-left p-4 " >
             <h1 className="text-5xl font-bold text-blue-500">SORTEIO MEGA-SENA DELL</h1>
 
             <h1 className="text-5xl font-bold text-black">Números Sorteados:</h1>
@@ -76,7 +76,7 @@ export const Sorteio = () => {
                             apostas.map((aposta) => (
                                 <div className="flex">
                                 <article className='bg-grey-200 rounded p-1 gap-2'>
-                                <p>Id: {aposta.id}</p>
+                                <p >Id: {aposta.id}</p>
                                 <p>Nome: {aposta.name}</p>
                                 <p>CPF: {aposta.cpf}</p>
                                 <p>Números apostados: {(aposta.numeros.map((num) => (
