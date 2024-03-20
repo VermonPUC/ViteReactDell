@@ -20,10 +20,12 @@ export const Cadastro = () => {
 
  //console.log(post.idP, post.numerosP, post.nameP, post.cpfP)
 
-  const remove = (e) => {
-    var x = escolhas.filter((item) => item != e)   
-    mudaEscolhas(x)
-  }
+ const remove = (e) => {
+  mudaEscolhas(prevEscolhas => {
+      const updatedEscolhas = prevEscolhas.filter(item => item !== e);
+      return updatedEscolhas;
+  });
+}
   const getApostas = async () => {
     const result = await axios.get("http://localhost:3000/apostas")
     setApostas(result.data)
@@ -87,42 +89,49 @@ export const Cadastro = () => {
   },[])
 
   
-  // setTimeout(
-  //   () => {
-  //     setCounter(counter + 1)
-  //     //console.log(escolhas)
+  setTimeout(
+    () => {
+      setCounter(counter + 1)
+      console.log(escolhas)
 
-  //   },
-  //   1000
-  // )
+    },
+    1000
+  )
   
   
   return (
     <div className='flex hover:flex-row justify-left mt p-4'>
-    <div className=''>
+    <div>
       <h1 className="text-5xl font-bold text-blue-500">MEGA-SENA DELL</h1>
-      <div className="">
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
+      <div>
+        <form className='flex flex-col space-y-4 mt-4' onSubmit={(e) => onSubmit(e)}>
+
+          <div className="space-x-1">
           <label>Nome:</label>
-          <input className='p-2' type='text' placeholder="Nome do dono da aposta" onChange={(e) => {setName(e.target.value)}}></input>
+          <input className='p-1' type='text' placeholder="Nome do dono da aposta" onChange={(e) => {setName(e.target.value)}}></input>
           </div>
-          <div></div>
+
+          <div className="space-x-1">
           <label>CPF:</label>
-          <input className='p-2' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => {setCPF(e.target.value)}}></input>
+          <input className='p-1' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => {setCPF(e.target.value)}}></input>
+          </div>
+
+          <div>
           <p>Números selecionados para a aposta:</p>
           <p className='text-bold text-green-900'>
             {escolhas.map((x)=>(
-            <span>{x} </span>
+            <span key={x}>{x} </span>
           ))}
           </p>
+          </div>
+
 
           <div className='flex '>
-        <button className='bg-yellow-500 text-white p-2 rounded text-lg' onClick={surpresinha} readOnly = {true} type = "button"> Surpresinha</button>
-        <input className='p-2 bg-green-700 text-white rounded text-lg w-auto' type='Submit' value='Cadatrar aposta' readOnly = {true}></input>
-          {(error ? <span className='text-red bg-red-50'>Preencha todos os campos para enviar a aposta.</span> : "")}
-        </div>
-        
+            <input className='p-2 bg-green-700 text-white rounded text-lg w-auto' type='Submit' value='Cadatrar aposta' readOnly = {true}></input>
+            <button className='bg-yellow-500 text-white p-2 rounded text-lg' onClick={surpresinha} readOnly = {true} type = "button"> Surpresinha</button>
+            {(error ? <span className='text-red bg-red-50'>Preencha todos os campos para enviar a aposta.</span> : "")}
+          </div>
+      
         </form>
         </div>
       <div className=''>
@@ -136,16 +145,16 @@ export const Cadastro = () => {
           <h1 className='text-2xl font-bold text-black ml-10'>
             LISTA DE APOSTAS
           </h1>
-          <section className='grid grid-cols-4 max-w p-2 m-4 flex-nowrap'>
-          {apostas.length === 0 ? (<p>Carregando...</p>) : (
+          <section className='grid grid-cols-4 max-w p-2 m-8 flex-nowrap'>
+          {apostas.length === 0 ? (<p>Nenhuma aposta</p>) : (
                 apostas.map((aposta) => (
-                  <div className="flex">
+                  <div key={aposta.id} className="flex">
                     <article className='bg-green-200 rounded p-1 gap-2 m-4'>
                     <p className="bg-green-500 text-white text-2px">Id: {aposta.id || 'Carregando...'}</p>
                     <p>Nome: {aposta.name}</p>
                     <p>CPF: {aposta.cpf}</p>
                     <p>Números apostados: {(aposta.numeros.map((num) => (
-                      <span>{num} </span>
+                      <span key={num}>{num} </span>
                     )))}</p>
                     </article>
                   </div>
