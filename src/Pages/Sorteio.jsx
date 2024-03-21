@@ -13,8 +13,6 @@ export const Sorteio = () => {
             setSorteio(resp.data)
             setApostas(resp.data.apostas_vencedoras)
             setNumOrd(arrayToObjectList(resp.data.numeros_apostados))
-            console.log(resp.data)
-            console.log(arrayToObjectList(resp.data.numeros_apostados))
         })
     }
 
@@ -41,6 +39,7 @@ export const Sorteio = () => {
 
         <div className="flex flex-col items-center p-8 " >
             <h1 className="text-5xl font-bold text-blue-600">SORTEIO MEGA-SENA DELL</h1>
+
             <h1 className="text-5xl font-bold text-black">Números Sorteados:</h1>
             <h1 className="text-5xl font-bold text-black">{!("rodada" in sorteio) ? "Carregando..." : (
                 <div className={"" + (sorteio.venceu ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50')}>
