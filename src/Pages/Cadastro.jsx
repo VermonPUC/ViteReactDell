@@ -129,12 +129,12 @@ export const Cadastro = () => {
 
             <div className="space-x-1">
               <label>Nome:</label>
-              <input className='p-1' type='text' placeholder="Nome do dono da aposta" onChange={(e) => { setName(e.target.value) }}></input>
+              <input className='p-1 bg-gray-200 w-full' type='text' placeholder="Nome do dono da aposta" onChange={(e) => { setName(e.target.value) }}></input>
             </div>
 
             <div className="space-x-1">
               <label>CPF:</label>
-              <input className='p-1' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => { setCPF(e.target.value) }}></input>
+              <input className='p-1 bg-gray-200 w-full' type='text' placeholder="Ex.: 123.456.789-10" onChange={(e) => { setCPF(e.target.value) }}></input>
             </div>
 
             <div>
@@ -147,12 +147,12 @@ export const Cadastro = () => {
             </div>
 
 
-            <div className='flex '>
-              <input className='p-2 bg-green-700 text-white rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-green-800' type='Submit' value='Cadatrar aposta' readOnly={true}></input>
-              <button className='bg-yellow-500 text-white p-2 rounded text-lg hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-yellow-600' onClick={surpresinha} type="button"> Surpresinha</button>
+            <div className='flex'>
+              <input className='w-1/2 p-2 bg-green-700 text-white rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-green-800' type='Submit' value='Cadatrar aposta' readOnly={true}></input>
+              <button className='w-1/2 bg-yellow-500 text-white p-2 rounded text-lg hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-yellow-600' onClick={surpresinha} type="button"> Surpresinha</button>
             </div>
             <div>
-            {(error ? <span className='text-red bg-red-50'>Preencha todos os campos para enviar a aposta.</span> : "")}
+            {(error ? <span className='text-red bg-red-50'>Preencha todos os campos corretamente para enviar a aposta.</span> : "")}
             </div>
 
           </form>
@@ -161,7 +161,7 @@ export const Cadastro = () => {
           <Numeros escolhas={escolhas} func={remove} func2={adiciona}/>
         </div>
         <div>
-          <button className='bg-red-500 text-white p-2 rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-red-600'>{<Link to="/Sorteio">Finalizar cadastros e iniciar sorteio</Link>}</button>
+          <button className='bg-red-500 text-white p-2 rounded text-lg w-full hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-red-600'>{<Link to="/Sorteio">Finalizar cadastros e iniciar sorteio</Link>}</button>
         </div>
       </div>
       <div>

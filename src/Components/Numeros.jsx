@@ -8,7 +8,7 @@ export const Numeros = (props) => {
         )
     }
     return (
-        <div className="grid grid-cols-5 max-w-sm">
+        <div className="grid grid-cols-5 w-full">
             {arr}
         </div>
     )
