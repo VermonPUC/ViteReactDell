@@ -39,7 +39,10 @@ export const Premiacao = () => {
             return (
                 <div>
                     <p>
-                        O prêmio de R$1.000.000 e um <span className="text-blue-600">estágio na DELL</span> foi para: <span className="text-red-600">NINGÚEM!</span>
+                        O prêmio de R$1.000.000 foi para: <span className="text-red-600">NINGÚEM!</span>
+                    </p>
+                    <p>
+                        Porém, estágio na <span className="text-blue-600">Dell</span> todos ganham!
                     </p>
                     <p>
                         Mais sorte na próxima!

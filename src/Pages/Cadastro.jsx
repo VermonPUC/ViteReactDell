@@ -148,7 +148,7 @@ export const Cadastro = () => {
 
 
             <div className='flex'>
-              <input className='w-1/2 p-2 bg-green-700 text-white rounded text-lg w-auto hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-green-800' type='Submit' value='Cadatrar aposta' readOnly={true}></input>
+              <input className='w-1/2 p-2 bg-green-700 text-white rounded text-lg hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-green-800' type='Submit' value='Cadatrar aposta' readOnly={true}></input>
               <button className='w-1/2 bg-yellow-500 text-white p-2 rounded text-lg hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 duration-100 hover:bg-yellow-600' onClick={surpresinha} type="button"> Surpresinha</button>
             </div>
             <div>
